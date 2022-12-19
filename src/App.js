@@ -15,10 +15,6 @@ function App() {
   const variablesColors = ['--color-toggle-bg', '--color-toggle-selected', '--color-display', '--color-buttons-container',
     '--color-buttons-bg', '--color-buttons-bg-opaque', '--color-text', '--color-history', '--color-rectangle'];
 
-  const historyArr = [];
-
-  let currentNumber;
-
 
   function changeTheme() {
     setToggle(!toggle);
