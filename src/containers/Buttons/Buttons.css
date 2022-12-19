@@ -1,0 +1,78 @@
+.buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: var(--color-buttons-container);
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.main-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.numbers {
+    display: grid;
+    grid-template: 1fr / 1fr 1fr 1fr;
+    justify-items: center;
+    gap: 1rem;
+}
+
+.numbers button:nth-child(1n+10) {
+    background: var(--color-buttons-bg-opaque);
+}
+
+.optional-buttons {
+    display: flex;
+    justify-content: space-between;
+
+    width: 16.25rem;
+    height: 4.375rem;
+
+
+    background: var(--color-buttons-bg);
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.05);
+    border-radius: 40px;
+
+}
+
+.optional-buttons button {
+    background: rgba(0, 0, 0, 0)
+}
+
+.operators {
+    display: flex;
+    flex-direction: column;
+    width: 4.375rem;
+    height: 25.9375rem;
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.05);
+    border-radius: 40px;
+    gap: 1rem;
+    background: var(--color-buttons-bg);
+}
+
+.operators button {
+    background: rgba(0, 0, 0, 0);
+}
+
+.operators button:last-child {
+    background: var(--color-buttons-bg);
+}
+
+.rectangle {
+    margin: 0 auto;
+    width: 10.9375rem;
+    height: 0.3125rem;
+
+
+    background: var(--color-rectangle);
+    border-radius: 25px;
+
+}
+
+.break {
+    flex-basis: 100%;
+}
+

@@ -1,0 +1,8 @@
+.display {
+    display: flex;
+    padding: 1rem;
+    flex-direction: column;
+    gap: 7rem;
+    width: 100%;
+    background-color: var(--color-display);
+}

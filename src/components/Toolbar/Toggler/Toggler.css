@@ -1,0 +1,44 @@
+.toggle {
+    display: flex;
+    width: 7.625rem;
+    height: 2.75rem;
+
+    background-color: var(--color-toggle-bg);
+    border-radius: 40px;
+
+    filter: drop-shadow(0px 0px 20px rgba(129, 129, 129, 0.15));
+}
+
+.toggle input[type="checkbox"] {
+    display: none;
+}
+
+.toggle label {
+    display: flex;
+    width: 100%;
+    cursor: pointer;
+
+}
+
+.toggle label div {
+    display: flex;
+    width: 100%;
+    border-radius: 40px;
+}
+
+.toggle label div div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+
+.light div:first-child {
+    background: var(--color-toggle-selected);    
+}
+
+
+.dark div:nth-child(2) {
+    background: var(--color-toggle-selected);
+}

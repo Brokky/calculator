@@ -1,0 +1,19 @@
+.button {
+    width: 4.375rem;
+    height: 4.375rem;
+
+    font-family: 'Poppins';
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 39px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+
+    background-color: var(--color-buttons-bg);
+    color: var(--color-text);
+    border-radius: 50%;
+}
+
