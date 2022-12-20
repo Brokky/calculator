@@ -1,11 +1,10 @@
 import React from 'react';
 import './Button.css';
 
-function Button({value, func}) {
-
+function Button({content, func, value}) {
 
   return (
-    <button className='button' onClick={() => func(value)}>{value}</button>
+    <button className='button' onClick={() => func(value)}>{content}</button>
   );
 }
 
