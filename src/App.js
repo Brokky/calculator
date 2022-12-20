@@ -5,6 +5,8 @@ import Display from './containers/Display/Display';
 
 function App() {
 
+  // Light/Dark modes
+
   const lightColors = ['#A9DCFD', '#D8EEFF', '#FFF',
     'linear-gradient(244.38deg, #9EE8FF 8.14%, #5ACEFF 27.9%, #79AFFF 56.94%, #2D5FDE 84.11%)',
     'rgba(230, 246, 255, 0.2)', 'rgba(255, 255, 255, 0.3)', '#373737', 'rgba(55, 55, 55, 0.5)', '#6396C5'];
@@ -24,10 +26,22 @@ function App() {
     })
   }
 
+  const [calc, setCalc] = useState('');
+
+  function changeCalc(value) {
+
+    let newValue = calc + value;
+
+    if (calc === '' && (value === '0' || value === '00')) newValue = calc;
+    if ((calc.includes('.') || calc === '') && value === '.') newValue = calc;
+
+    setCalc(newValue);
+  }
+
   return (
     <div className="App">
-      <Display theme={toggle} changeTheme={changeTheme} />
-      <Buttons />
+      <Display theme={toggle} changeTheme={changeTheme} calc={calc} />
+      <Buttons changeCalc={changeCalc} />
     </div>
   );
 }
