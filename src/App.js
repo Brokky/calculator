@@ -4,7 +4,6 @@ import Buttons from './containers/Buttons/Buttons';
 import Display from './containers/Display/Display';
 
 function App() {
-  const [toggle, setToggle] = useState(true);
 
   const lightColors = ['#A9DCFD', '#D8EEFF', '#FFF',
     'linear-gradient(244.38deg, #9EE8FF 8.14%, #5ACEFF 27.9%, #79AFFF 56.94%, #2D5FDE 84.11%)',
@@ -15,6 +14,7 @@ function App() {
   const variablesColors = ['--color-toggle-bg', '--color-toggle-selected', '--color-display', '--color-buttons-container',
     '--color-buttons-bg', '--color-buttons-bg-opaque', '--color-text', '--color-history', '--color-rectangle'];
 
+  const [toggle, setToggle] = useState(true);
 
   function changeTheme() {
     setToggle(!toggle);
