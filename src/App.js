@@ -26,95 +26,10 @@ function App() {
     })
   }
 
-  // Numbers for calculation
-
-  const [numbers, setNumbers] = useState([]);
-
-  // Waiting for next number
-
-  const [waiting, setWaiting] = useState(false);
-
-  // Operators for calculation
-
-  const [operators, setOperators] = useState([]);
-
-  function changeOperators(value) {
-    if (waiting) operators.pop();
-    if (!waiting) {
-      setWaiting(!waiting);
-      setNumbers([...numbers, Number(calc)]);
-    }
-    setOperators([...operators, value]);
-  }
-
-  // Displayed numbers
-
-  const [calc, setCalc] = useState('');
-
-  function changeCalc(value) {
-
-    let newValue = calc + value;
-
-    if (calc === '' && (value === '0' || value === '00')) newValue = calc;
-    if ((calc.includes('.') || calc === '') && value === '.') newValue = calc;
-    if (waiting) {
-      newValue = value;
-      setWaiting(!waiting);
-    }
-
-    setCalc(newValue);
-  }
-
-  // Get result
-
-  const [result, setResult] = useState('');
-
-  function changeResult() {
-    setNumbers([...numbers, Number(calc)]);
-    
-    setResult(numbers.reduce((acc, cur, ind) => {
-      switch (operators[ind - 1]) {
-        case '+':
-          return acc + cur;
-        case '-':
-          return acc - cur;
-        case '*':
-          return acc * cur;
-        case '/':
-          return acc / cur;
-        default:
-          console.log('changeResult() ERROR');
-      }
-    }));
-    console.log(numbers);
-  }
-
-
-  function showResult() {
-    console.log(result);
-  }
-
-  function showNumbers() {
-    console.log(numbers);
-  }
-
-  function showOperators() {
-    console.log(operators);
-  }
-
-  function showCalc() {
-    console.log(calc);
-  }
-
-
   return (
     <div className="App">
-      <Display theme={toggle} changeTheme={changeTheme} calc={result ? result : calc} />
-      <Buttons changeCalc={changeCalc} changeOperators={changeOperators} changeResult={changeResult} />
-      <button onClick={showResult}>Result</button>
-      <button onClick={showNumbers}>Numbers</button>
-      <button onClick={showOperators}>Operators</button>
-      <button onClick={showCalc}>Calc</button>
+      <Display theme={toggle} changeTheme={changeTheme} />
+      <Buttons />
     </div>
   );
 }
