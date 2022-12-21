@@ -26,6 +26,24 @@ function App() {
     })
   }
 
+  // State for calc
+
+  const [calc, setCalc] = useState('');
+
+  // State for pushed numbers
+
+  const [numbers, setNumbers] = useState([]);
+
+  //State for pushed operators
+
+  const [operators, setOperators] = useState([]);
+
+  //Function for result
+
+  const getResult = () => {
+    
+  }
+
   return (
     <div className="App">
       <Display theme={toggle} changeTheme={changeTheme} />
