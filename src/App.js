@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Buttons from './containers/Buttons/Buttons';
 import Display from './containers/Display/Display';
 
@@ -26,28 +26,88 @@ function App() {
     })
   }
 
-  // State for calc
+  // State for waiting
 
-  const [calc, setCalc] = useState('');
+  const [waiting, setWaiting] = useState(false);
+
+  // State for displayedNumber
+
+  const [displayedNumber, setDisplayedNumber] = useState('');
+
+  function changeDisplayedNumber(value) {
+
+    let prev = displayedNumber;
+
+    if (waiting) {
+      prev = '';
+      setWaiting(!waiting);
+      setDisplayedNumber(prev);
+    }
+
+    setDisplayedNumber(prev + value);
+
+  }
+
+  // State for pushed operators
+
+  const [operators, setOperators] = useState([]);
+
+  function addOperator(value) {
+
+    if (waiting) {
+
+      operators.pop();
+
+    } else {
+
+      setNumbers([...numbers, Number(displayedNumber)]);
+      setWaiting(!waiting);  
+
+    }
+
+    setOperators([...operators, value]);
+
+  }
 
   // State for pushed numbers
 
   const [numbers, setNumbers] = useState([]);
 
-  //State for pushed operators
+  useEffect(() => {
 
-  const [operators, setOperators] = useState([]);
+    let operatorsArr = operators.slice();
 
-  //Function for result
+    if (operatorsArr.pop() === '=') {
+      setDisplayedNumber(numbers.reduce((acc, cur, ind) => {
+        switch (operators[ind - 1]) {
+          case '+':
+            return acc + cur;
+          case '-':
+            return acc - cur;
+          case '*':
+            return acc * cur;
+          case '/':
+            return acc / cur;
+          default:
+            console.error();;
+        }
+      }));
+    }
 
-  const getResult = () => {
-    
-  }
+    console.log(operators, 'operators have been changed');
+    console.log(numbers, 'numbers has been changed');
+
+  }, [operators]);
+
+
+
+
+  // Function for result
 
   return (
     <div className="App">
-      <Display theme={toggle} changeTheme={changeTheme} />
-      <Buttons />
+      <Display theme={toggle} changeTheme={changeTheme} displayedNumber={displayedNumber} />
+      <Buttons changeDisplayedNumber={changeDisplayedNumber} addOperator={addOperator} />
     </div>
   );
 }

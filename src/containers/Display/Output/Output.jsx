@@ -1,7 +1,7 @@
 import React from 'react';
 import './Output.css';
 
-function Output({ calc }) {
+function Output({ displayedNumber }) {
   return (
     <div className='output'>
       <div className='history'>
@@ -9,7 +9,7 @@ function Output({ calc }) {
       </div>
       <div className='result'>
         <span>=</span>
-        <span>{calc || 0}</span>
+        <span>{displayedNumber|| 0}</span>
       </div>
     </div>
   )

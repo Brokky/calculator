@@ -3,12 +3,12 @@ import Toolbar from '../../components/Toolbar/Toolbar';
 import './Display.css';
 import Output from './Output/Output';
 
-function Display({ theme, changeTheme, calc }) {
+function Display({ theme, changeTheme, displayedNumber }) {
 
     return (
         <div className="display">
             <Toolbar theme={theme} changeTheme={changeTheme} />
-            <Output calc={calc} />
+            <Output displayedNumber={displayedNumber} />
         </div>
     );
 }
