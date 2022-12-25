@@ -37,6 +37,11 @@ function App() {
   function changeDisplayedNumber(value) {
 
     let prev = displayedNumber;
+        
+    if (operators[0] === '=') {
+      setNumbers([]);
+      setOperators([]);
+    }
 
     if (waiting) {
       prev = '';
@@ -54,6 +59,11 @@ function App() {
 
   function addOperator(value) {
 
+    if (operators.length < 1 && value === '=') {
+      console.log('hi');
+      return;
+    } 
+
     if (waiting) {
 
       operators.pop();
@@ -61,7 +71,7 @@ function App() {
     } else {
 
       setNumbers([...numbers, Number(displayedNumber)]);
-      setWaiting(!waiting);  
+      setWaiting(!waiting);
 
     }
 
@@ -75,24 +85,29 @@ function App() {
 
   useEffect(() => {
 
-    let operatorsArr = operators.slice();
+    if (operators.length !== 2) {
+      console.log(operators, operators.length);
+      return;
+    } 
 
-    if (operatorsArr.pop() === '=') {
-      setDisplayedNumber(numbers.reduce((acc, cur, ind) => {
-        switch (operators[ind - 1]) {
-          case '+':
-            return acc + cur;
-          case '-':
-            return acc - cur;
-          case '*':
-            return acc * cur;
-          case '/':
-            return acc / cur;
-          default:
-            console.error();;
-        }
-      }));
-    }
+    let result = numbers.reduce((acc, cur, ind) => {
+      switch (operators[ind - 1]) {
+        case '+':
+          return acc + cur;
+        case '-':
+          return acc - cur;
+        case '*':
+          return acc * cur;
+        case '/':
+          return acc / cur;
+        default:
+          console.error();
+      }
+    })
+
+    setDisplayedNumber(result);
+    setNumbers([result]);
+    operators.shift(); 
 
     console.log(operators, 'operators have been changed');
     console.log(numbers, 'numbers has been changed');
