@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '../../components/Button/Button';
 import './Buttons.css';
 
-function Buttons({changeDisplayedNumber, addOperator, makePercentage, changeNumberSign}) {
+function Buttons({changeDisplayedNumber, addOperator, makePercentage, changeNumberSign, allClear}) {
   const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '0', '00'];
   const optionalBtns = ['AC', '+/-', '%'];
   const keys = [];
@@ -19,6 +19,9 @@ function Buttons({changeDisplayedNumber, addOperator, makePercentage, changeNumb
                 break;
               case '+/-':
                 btnFunction = changeNumberSign;
+                break;
+              case 'AC':
+                btnFunction = allClear;
                 break;
               default:
                 btnFunction = () => console.error('Error');

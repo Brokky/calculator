@@ -153,11 +153,20 @@ function App() {
     setDisplayedNumber(number);
   }
 
+  // Function for clearing
+
+  function allClear() {
+    setWaiting(false);
+    setDisplayedNumber('');
+    setNumbers([]);
+    setOperators([]);
+  }
+
   return (
     <div className="App">
       <Display theme={toggle} changeTheme={changeTheme} displayedNumber={displayedNumber} />
       <Buttons changeDisplayedNumber={changeDisplayedNumber} addOperator={addOperator} makePercentage={makePercentage}
-        changeNumberSign={changeNumberSign} />
+        changeNumberSign={changeNumberSign} allClear={allClear} />
     </div>
   );
 }
