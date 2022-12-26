@@ -38,6 +38,12 @@ function App() {
 
     let prev = displayedNumber;
 
+    if (value === '.') {
+      prev = prev.indexOf('.') === -1 ? prev + value : prev;
+      setDisplayedNumber(prev);
+      return;
+    }
+
     if (operators[0] === '=') {
       setNumbers([]);
       setOperators([]);
