@@ -37,7 +37,7 @@ function App() {
   function changeDisplayedNumber(value) {
 
     let prev = displayedNumber;
-        
+
     if (operators[0] === '=') {
       setNumbers([]);
       setOperators([]);
@@ -59,10 +59,7 @@ function App() {
 
   function addOperator(value) {
 
-    if (operators.length < 1 && value === '=') {
-      console.log('hi');
-      return;
-    } 
+    if (operators.length < 1 && value === '=') return;
 
     if (waiting) {
 
@@ -101,7 +98,7 @@ function App() {
         case '/':
           return acc / cur;
         default:
-          console.error();
+          console.error('Error');
       }
     })
 
@@ -114,15 +111,30 @@ function App() {
 
   }, [operators]);
 
+  // Function for percentage
 
+  function makePercentage() {
 
+    let x = operators[operators.length - 1] || '*';
 
-  // Function for result
+    switch(x) {
+      case '*':
+      case '/':
+        setDisplayedNumber(displayedNumber / 100);
+        break;
+      case '+':
+      case '-':
+        setDisplayedNumber(numbers[0] / 100 * displayedNumber);
+        break;
+      default:
+        console.error('Error');
+    }
+  }
 
   return (
     <div className="App">
       <Display theme={toggle} changeTheme={changeTheme} displayedNumber={displayedNumber} />
-      <Buttons changeDisplayedNumber={changeDisplayedNumber} addOperator={addOperator} />
+      <Buttons changeDisplayedNumber={changeDisplayedNumber} addOperator={addOperator} makePercentage={makePercentage} />
     </div>
   );
 }

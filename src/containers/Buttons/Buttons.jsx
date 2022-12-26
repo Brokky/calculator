@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '../../components/Button/Button';
 import './Buttons.css';
 
-function Buttons({changeDisplayedNumber, addOperator}) {
+function Buttons({changeDisplayedNumber, addOperator, makePercentage}) {
   const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '0', '00'];
   const optionalBtns = ['AC', '+/-', '%'];
   const keys = [];
@@ -12,8 +12,9 @@ function Buttons({changeDisplayedNumber, addOperator}) {
       <div className='main-buttons'>
         <div className='optional-buttons'>
           {optionalBtns.map(val => {
+            let btnFunction = val === '%' ? makePercentage : () => console.log('hi');
             keys.push(keys.length);
-            return <Button content={val} func={changeDisplayedNumber} key={keys[keys.length - 1]} />
+            return <Button content={val} value={val} func={btnFunction} key={keys[keys.length - 1]} />
           })}
         </div>
         <div className="numbers">
