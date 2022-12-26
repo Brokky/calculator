@@ -49,7 +49,9 @@ function App() {
       setDisplayedNumber(prev);
     }
 
-    setDisplayedNumber(prev + value);
+    prev = prev === '-0' && value == 0 ? '-0' : Number(prev + value).toString();
+
+    setDisplayedNumber(prev);
 
   }
 
@@ -85,7 +87,7 @@ function App() {
     if (operators.length !== 2) {
       console.log(operators, operators.length);
       return;
-    } 
+    }
 
     let result = numbers.reduce((acc, cur, ind) => {
       switch (operators[ind - 1]) {
@@ -104,7 +106,7 @@ function App() {
 
     setDisplayedNumber(result);
     setNumbers([result]);
-    operators.shift(); 
+    operators.shift();
 
     console.log(operators, 'operators have been changed');
     console.log(numbers, 'numbers has been changed');
@@ -117,7 +119,7 @@ function App() {
 
     let x = operators[operators.length - 1] || '*';
 
-    switch(x) {
+    switch (x) {
       case '*':
       case '/':
         setDisplayedNumber(displayedNumber / 100);
@@ -131,10 +133,29 @@ function App() {
     }
   }
 
+  // Function for negative and positive
+
+  function changeNumberSign() {
+
+    let number = displayedNumber || '0';
+
+    if (waiting) {
+      setNumbers([Number(number)]);
+      number = '0';
+      setDisplayedNumber(number);
+      setWaiting(!waiting);
+    }
+
+    number = number.indexOf('-') === -1 ? '-' + number : number.slice(1);
+
+    setDisplayedNumber(number);
+  }
+
   return (
     <div className="App">
       <Display theme={toggle} changeTheme={changeTheme} displayedNumber={displayedNumber} />
-      <Buttons changeDisplayedNumber={changeDisplayedNumber} addOperator={addOperator} makePercentage={makePercentage} />
+      <Buttons changeDisplayedNumber={changeDisplayedNumber} addOperator={addOperator} makePercentage={makePercentage}
+        changeNumberSign={changeNumberSign} />
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '../../components/Button/Button';
 import './Buttons.css';
 
-function Buttons({changeDisplayedNumber, addOperator, makePercentage}) {
+function Buttons({changeDisplayedNumber, addOperator, makePercentage, changeNumberSign}) {
   const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '0', '00'];
   const optionalBtns = ['AC', '+/-', '%'];
   const keys = [];
@@ -12,7 +12,17 @@ function Buttons({changeDisplayedNumber, addOperator, makePercentage}) {
       <div className='main-buttons'>
         <div className='optional-buttons'>
           {optionalBtns.map(val => {
-            let btnFunction = val === '%' ? makePercentage : () => console.log('hi');
+            let btnFunction;
+            switch(val) {
+              case '%':
+                btnFunction = makePercentage;
+                break;
+              case '+/-':
+                btnFunction = changeNumberSign;
+                break;
+              default:
+                btnFunction = () => console.error('Error');
+            }
             keys.push(keys.length);
             return <Button content={val} value={val} func={btnFunction} key={keys[keys.length - 1]} />
           })}
