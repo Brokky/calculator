@@ -137,9 +137,11 @@ function App() {
 
   function changeNumberSign() {
 
-    let number = displayedNumber || '0';
+    let changingResult = numbers.length === 1;
 
-    if (waiting) {
+    let number = String(displayedNumber) || '0';
+
+    if (!changingResult && waiting) {
       setNumbers([Number(number)]);
       number = '0';
       setDisplayedNumber(number);
