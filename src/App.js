@@ -26,6 +26,10 @@ function App() {
     })
   }
 
+  // State for history 
+
+  const [history, setHistory] = useState('');
+
   // State for waiting
 
   const [waiting, setWaiting] = useState(false);
@@ -110,8 +114,10 @@ function App() {
       }
     })
 
+    setHistory(numbers[0] + ' ' + operators[0] + ' ' + numbers[1] + ' = ' + result + '\n');
     setDisplayedNumber(result);
     setNumbers([result]);
+
     operators.shift();
 
     console.log(operators, 'operators have been changed');
@@ -166,11 +172,13 @@ function App() {
     setDisplayedNumber('');
     setNumbers([]);
     setOperators([]);
+    setHistory('');
   }
+
 
   return (
     <div className="App">
-      <Display theme={toggle} changeTheme={changeTheme} displayedNumber={displayedNumber} />
+      <Display theme={toggle} changeTheme={changeTheme} displayedNumber={displayedNumber} history={history} />
       <Buttons changeDisplayedNumber={changeDisplayedNumber} addOperator={addOperator} makePercentage={makePercentage}
         changeNumberSign={changeNumberSign} allClear={allClear} />
     </div>

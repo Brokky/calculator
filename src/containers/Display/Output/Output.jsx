@@ -1,15 +1,15 @@
 import React from 'react';
 import './Output.css';
 
-function Output({ displayedNumber }) {
+function Output({ displayedNumber, history }) {
   return (
     <div className='output'>
       <div className='history'>
-        1000
+        {history || 0}
       </div>
       <div className='result'>
         <span>=</span>
-        <span>{displayedNumber|| 0}</span>
+        <span>{displayedNumber || 0}</span>
       </div>
     </div>
   )
