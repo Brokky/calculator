@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Buttons from './containers/Buttons/Buttons';
 import Display from './containers/Display/Display';
 
+
 function App() {
 
   // Light/Dark modes
@@ -26,9 +27,9 @@ function App() {
     })
   }
 
-  // State for history 
+  // History feature
 
-  const [history, setHistory] = useState('');
+  const [history, setHistory] = useState('');  
 
   // State for waiting
 
