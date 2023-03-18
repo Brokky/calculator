@@ -60,7 +60,7 @@ function App() {
       setDisplayedNumber(prev);
     }
 
-    prev = prev === '-0' && value == 0 ? '-0' : Number(prev + value).toString();
+    prev = prev === '-0' && value === 0 ? '-0' : Number(prev + value).toString();
 
     setDisplayedNumber(prev);
 
@@ -112,6 +112,7 @@ function App() {
           return acc / cur;
         default:
           console.error('Error');
+          return null;
       }
     })
 
@@ -124,7 +125,7 @@ function App() {
     console.log(operators, 'operators have been changed');
     console.log(numbers, 'numbers has been changed');
 
-  }, [operators]);
+  }, [operators, numbers]);
 
   // Function for percentage
 
